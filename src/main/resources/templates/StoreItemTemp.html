@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p></p>
+
+    <div th:each="storeitem : ${storeitems}">
+        <span th:text="${storeitem.getName()}"></span>
+        <span th:text="${storeitem.getPrice()}"></span>
+        <form id="del">
+            <input type="hidden" th:value="${storeitem.getId()}" name="id">
+            <button formaction="deleteStoreItem">Delete</button>
+        </form>
+    </div>
+
+    <form>
+        <label for="input-name">name: </label>
+        <input required id="input-name" name="name">
+        <br>
+        <label for="input-price">price: </label>
+        <input required id="input-price" name="price">
+        <button formaction="addStoreItem">Add</button>
+    </form>
+
+
+</body>
+</html>
