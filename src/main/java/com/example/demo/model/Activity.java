@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,21 +14,35 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     private String name;
+    @NotNull
     private int maxParticipants;
+    @NotNull
     private String description;
+    @NotNull
+    private double minDurationHours;
 
     public Activity() {
     }
 
-    public Activity(String name, int maxParticipants, String description) {
+    public Activity(String name, int maxParticipants, double minDurationHours, String description) {
         this.name = name;
         this.maxParticipants = maxParticipants;
         this.description = description;
+        this.minDurationHours = minDurationHours;
     }
 
     public int getId() {
         return id;
+    }
+
+    public double getMinDurationHours() {
+        return minDurationHours;
+    }
+
+    public void setMinDurationHours(double minDurationHours) {
+        this.minDurationHours = minDurationHours;
     }
 
     public String getName() {
