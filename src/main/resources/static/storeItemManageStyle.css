@@ -1,0 +1,35 @@
+#pricereq, #namereq{
+    color:red;
+}
+::placeholder{
+    color:red;
+    opacity: 0.5;
+    text-align: center;
+}
+.label{
+    width: 40px;
+    display: inline-block;
+}
+.input{
+    display: inline-block;
+    text-align: center;
+}
+.priceField,.nameField{
+    margin: 5px;
+}
+.addItemForm{
+    height: 90px;
+    width: 360px;
+    text-align: center;
+    margin: auto;
+}
+.itemListing{
+    height: auto;
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+}
+body{
+    text-align: center;
+}

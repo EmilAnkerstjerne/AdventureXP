@@ -2,29 +2,82 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Store</title>
+    <link rel="stylesheet" href="storeItemManageStyle.css">
 </head>
 <body>
     <p></p>
-
-    <div th:each="storeitem : ${storeitems}">
-        <span th:text="${storeitem.getName()}"></span>
-        <span th:text="${storeitem.getPrice()}"></span>
-        <form id="del">
-            <input type="hidden" th:value="${storeitem.getId()}" name="id">
-            <button formaction="deleteStoreItem">Delete</button>
-        </form>
-    </div>
-
+    <!-- TESTING
     <form>
         <label for="input-name">name: </label>
         <input required id="input-name" name="name">
         <br>
         <label for="input-price">price: </label>
         <input required id="input-price" name="price">
-        <button formaction="addStoreItem">Add</button>
+        <button formaction="/store/addStoreItem">Add</button>
     </form>
+    -->
+    <div class="addItemForm">
+        <form>
+            <div class="nameField">
+                <label for="name" class="label">Name: </label>
+                <input required id="name" name="name" placeholder="" class="input">
+                <span id="namereq"></span>
+            </div>
+
+            <div class="priceField">
+                <label for="price" class="label">Price: </label>
+                <input required id="price" name="price" placeholder="" class="input">
+                <span id="pricereq"></span>
+            </div>
+
+            <button onclick="postItem(document.getElementById('name').value,document.getElementById('price').value)"
+            type="button">
+                Add
+            </button>
+        </form>
+    </div>
+    <br>
+    <div th:each="storeitem : ${storeitems}" class="itemListing">
+        <span th:text="${storeitem.getName()}"></span>
+        <span th:text="${storeitem.getPrice()}"></span>
+        <form id="del">
+            <input type="hidden" th:value="${storeitem.getId()}" name="id">
+            <button formaction="store/deleteStoreItem">Delete</button>
+        </form>
+    </div>
 
 
 </body>
+<script>
+    function postItem (name, price){
+        document.getElementById("namereq").innerText = "";
+        document.getElementById("pricereq").innerText = "";
+        document.getElementById("price").placeholder="";
+
+        if(document.getElementById("name").value!=="" && document.getElementById("price").value!==""){
+            let xhr = new XMLHttpRequest();
+            let url = "http://localhost:8080/newStoreItem";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            let data = JSON.stringify({"name": name,"price": price});
+            xhr.send(data);
+            setTimeout(() => {window.location.reload();}, 50);
+        } else if(document.getElementById("name").value==="" && document.getElementById("price").value===""){
+            //document.getElementById("namereq").innerText = "Name required";
+            //document.getElementById("pricereq").innerText = "Price required";
+            document.getElementById("name").placeholder = "Name required";
+            document.getElementById("price").placeholder = "Price required";
+        } else if(document.getElementById("name").value===""){
+            //document.getElementById("namereq").innerText = "Name required";
+            document.getElementById("name").placeholder = "Name required";
+        } else if(document.getElementById("price").value===""){
+            //document.getElementById("pricereq").innerText = "Price required";
+            document.getElementById("price").placeholder = "Price required";
+        }
+    }
+
+
+</script>
+
 </html>
