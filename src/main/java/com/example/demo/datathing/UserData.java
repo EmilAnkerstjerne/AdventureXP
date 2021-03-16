@@ -25,6 +25,8 @@ public class UserData implements CommandLineRunner {
         user1.setPassword("root");
         user1.setActive(true);
         user1.setRoles("ROLE_ADMIN");
+        user1.setName("Gert");
+        user1.setPhoneNumber("69696969");
 
         userRepository.save(user1);
 
@@ -33,6 +35,8 @@ public class UserData implements CommandLineRunner {
         user2.setPassword("Haj");
         user2.setActive(true);
         user2.setRoles("ROLE_USER");
+        user2.setName("Kaj Johanssen");
+        user2.setPhoneNumber("42424242");
 
         userRepository.save(user2);
 
@@ -41,6 +45,8 @@ public class UserData implements CommandLineRunner {
         user3.setPassword("A");
         user3.setActive(true);
         user3.setRoles("ROLE_USER");
+        user3.setName("Super ABE");
+        user3.setPhoneNumber("12345678");
 
         userRepository.save(user3);
 
