@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+</head>
+<body>
+    <h1>Activities</h1>
+
+    <div th:each="activity : ${activities}">
+        <h2><span th:text="${activity.getName()}"></span></h2>
+        <span>Maks </span><span th:text="${activity.getMaxParticipants()}"></span><span> personer.</span>
+        <br>
+        <span th:text="${activity.getDescription()}"></span>
+        <form id="del">
+            <input type="hidden" th:value="${activity.getId()}" name="id">
+            <button formaction="deleteActivity">Delete</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
