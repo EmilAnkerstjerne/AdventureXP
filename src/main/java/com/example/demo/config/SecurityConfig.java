@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user/*", "/user", "/store", "/store/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/home", "/test02").permitAll()
+                .antMatchers("/home", "/test02", "/registration/*").permitAll()
                 .and().formLogin();
 
         http.
@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 . addLogoutHandler(new SecurityContextLogoutHandler())
                 );
+        http.csrf().disable();
     }
 
     @Bean
