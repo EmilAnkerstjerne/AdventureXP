@@ -16,7 +16,7 @@ public class ActivityController {
 
     @GetMapping("/index")
     public String test(){
-        Activity act = new Activity("Paintball", 10, "Kom og spil paintball");
+        Activity act = new Activity("Paintball", 10, 10, "Kom og spil paintball");
         activityRepository.save(act);
         return "index";
     }

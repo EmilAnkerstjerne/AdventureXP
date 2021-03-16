@@ -18,4 +18,6 @@ public class ActivityRestController {
         activityRepository.delete(activityRepository.getOne(id));
         return new RedirectView("/activities");
     }
+
+
 }
