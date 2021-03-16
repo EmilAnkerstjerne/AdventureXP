@@ -40,6 +40,18 @@ function clearWarnings(warnings){
     warnings.forEach(warning => warning.innerHTML = "")
 }
 
+function wait (ms){
+    const prom = new Promise(dummyFunction => setTimeout(dummyFunction, ms));
+    return prom;
+}
+
+function regSuccess (){
+    document.body.innerHTML += "<h2>Registration successful, redirecting to login page.</h2>"
+    wait(4000).then( () => {
+        window.location.href = "/user";
+        });
+}
+
 function addUser(){
     body1 = JSON.stringify(user);
     requestOptions.body = body1;
@@ -47,12 +59,11 @@ function addUser(){
     console.log(user);
 
     fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            document.body.innerHTML += "<h1>Success</h1>"; console.log(data)
+        .then(response => {
+            if (response.status == 201){regSuccess();}
         })
         .catch((error) => {
-            document.body.innerHTML += "<h1>Failure</h1>"; console.log(data)
+            document.body.innerHTML += "<h2>Something went wrong, please try again.</h2>";
         });
 }
 
