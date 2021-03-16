@@ -1,0 +1,16 @@
+.grid-container{
+    display: grid;
+    margin: 50px;
+    grid-template-columns: auto auto auto;
+}
+.grid-item{
+    width: 300px;
+    height: 600px;
+    border: solid;
+}
+.activity-name{
+
+}
+.activity-desc{
+
+}

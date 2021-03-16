@@ -27,5 +27,9 @@ public class ActivityController {
         return "activities";
     }
 
+    @GetMapping("/activities/gallery")
+    public String gallery(){
+        return "activity_gallery";
+    }
 
 }
