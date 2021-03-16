@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user/*", "/user", "/store", "/store/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/home", "/test02", "/registration/*").permitAll()
+                .antMatchers("/home", "/test02", "/registration/*", "/public/*").permitAll()
                 .and().formLogin();
 
         http.
@@ -37,12 +38,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 . addLogoutHandler(new SecurityContextLogoutHandler())
                 );
-        http.csrf().disable();
+        http.csrf().disable(); //To fix forbidden error, potential problem with using browsers TODO
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/public/**"); //Used as part of template static resources fix
     }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return NoOpPasswordEncoder.getInstance(); //No password encryption, not production ready TODO
     }
 
 }
