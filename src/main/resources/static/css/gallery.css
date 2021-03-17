@@ -24,9 +24,11 @@
 }
 .activity-duration{
     font-weight: bold;
+    margin-left: 5px;
 }
 .activity-participants{
     font-weight: bold;
+    margin-left: 5px;
 }
 body{
     background-color: #fcfcfc;
@@ -55,6 +57,7 @@ body{
     display: inline-block;
     text-align: center;
     border: solid #1a1a1a 2px;
+    margin-left: 5px;
 }
 header{
     background-color: #FED767;
