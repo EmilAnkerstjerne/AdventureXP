@@ -1,16 +1,66 @@
 .grid-container{
     display: grid;
-    margin: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
     grid-template-columns: auto auto auto;
+    column-gap: 10px;
+    row-gap: 30px;
 }
 .grid-item{
     width: 300px;
-    height: 600px;
-    border: solid;
+    height: 500px;
+    border: solid #e2d4a1 1px;
+    padding: 0;
+    background-color: #ffe8a1;
+    border-radius: 30px;
+    overflow: hidden;
 }
 .activity-name{
-
+    margin-left: 5px;
 }
 .activity-desc{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.activity-duration{
+    font-weight: bold;
+}
+.activity-participants{
+    font-weight: bold;
+}
+body{
+    background-color: #fcfcfc;
+}
+.logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    alignment: center;
+}
+.banner{
+    width: 100%;
+    background-color: #FED767;
+    margin: 0;
+}
+.bookingBtn{
+    margin-top: auto;
+    margin-bottom: 5px;
+    background-color: #FED767;
+    color: black;
+    text-decoration: none;
+    padding: 5px 13px 5px 13px;
+    border-radius: 5px;
+    font-size: 20px;
+    display: inline-block;
+    text-align: center;
+    border: solid #1a1a1a 2px;
+}
+header{
+    background-color: #FED767;
+    width: 100%;
+}
+.activity-img{
+    width: 100%;
 
 }

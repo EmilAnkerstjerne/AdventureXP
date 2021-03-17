@@ -5,3 +5,32 @@
 .inputBox {
     color: black;
 }
+header{
+    background-color: #FED767;
+    width: 100%;
+}
+.logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+    alignment: center;
+}
+.form{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    border: solid 5px;
+    border-radius: 5px;
+}
+.inputBox{
+    left: 50%;
+    top: 50%;
+
+}
+#regBtn{
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}

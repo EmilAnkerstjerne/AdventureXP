@@ -27,6 +27,29 @@ function makeGridItem(activity){
     desc.appendChild(descCon);
     gridItem.appendChild(desc);
 
+    const dur = document.createElement("p");
+    dur.className = "activity-duration";
+
+    const durCon = document.createTextNode("Min duration: " + activity.minDurationHours + "min")
+    dur.appendChild(durCon);
+    gridItem.appendChild(dur);
+
+    const part = document.createElement("p");
+    part.className = "activity-participants";
+
+    const partCon = document.createTextNode("Max participants: " + activity.maxParticipants);
+    part.appendChild(partCon);
+    gridItem.appendChild(part);
+
+    const bookBtn = document.createElement("a");
+    bookBtn.className = "bookingBtn";
+    bookBtn.setAttribute("href", "/booking/" + 1);
+
+
+    const bookBtnCon = document.createTextNode("Book");
+    bookBtn.appendChild(bookBtnCon);
+    gridItem.appendChild(bookBtn);
+
     gridCon.appendChild(gridItem);
 }
 
