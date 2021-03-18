@@ -1,0 +1,8 @@
+.activity-div{
+    border: 1px solid black;
+    width: 50%;
+    display: inline-block;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 2px;
+}

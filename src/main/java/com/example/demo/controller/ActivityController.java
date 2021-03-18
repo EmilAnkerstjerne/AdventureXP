@@ -30,9 +30,9 @@ public class ActivityController {
         return "activity_gallery";
     }
 
-//    @GetMapping("/activites/create")
-//    public String createActivity(){
-//
-//    }
+    @GetMapping("/activities/create")
+    public String createActivity(){
+        return "create_activities";
+    }
 
 }

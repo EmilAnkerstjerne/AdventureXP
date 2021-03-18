@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Activities</title>
+    <link href="../static/css/activities.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Activities <button type="button" class="btn goToCreateActivity" onclick="/">Create activity</button></h1>
+<div id="master-div">
+    <h1>Activities <a th:href="@{/activities/create}"><button type="button" class="btn goToCreateActivity">Create activity</button></a></h1>
 
-    <div th:each="activity : ${activities}" style="border: 1px solid black;width: 50%; display: inline-block; border-radius: 25px;padding: 20px;margin: 2px">
-        <h2><span th:text="${activity.getName()}"></span></h2>
-        <span>Maks </span><span th:text="${activity.getMaxParticipants()}"></span><span> personer.</span>
-        <br>
-        <span th:text="${activity.getDescription()}" style="display: inline-block"></span>
-        <br>
-        <button type="button" class="btn editActivity" th:value="${activity.getId()}">Edit activity</button>
-        <button type="button" class="btn deleteActivity" th:value="${activity.getId()}" onclick="deleteAct()">Delete activity</button>
-    </div>
-
+<!--    <div th:each="activity : ${activities}" class="activity-div">-->
+<!--        <h2><span th:text="${activity.getName()}"></span></h2>-->
+<!--        <span>Maks </span><span th:text="${activity.getMaxParticipants()}"></span><span> personer.</span>-->
+<!--        <br>-->
+<!--        <span th:text="${activity.getDescription()}"></span>-->
+<!--        <br>-->
+<!--        <button type="button" class="btn editActivity" th:value="${activity.getId()}">Edit activity</button>-->
+<!--        <button type="button" class="btn deleteActivity" th:value="${activity.getId()}" onclick="deleteAct()">Delete activity</button>-->
+<!--    </div>-->
+</div>
 <script src="../static/js/activities.js"></script>
 </body>
 </html>
