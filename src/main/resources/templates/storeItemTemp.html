@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Store</title>
-    <link rel="stylesheet" href="storeItemManageStyle.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/storeItemManageStyle.css" type="text/css">
 </head>
 <body>
     <p></p>
-    <!-- TESTING
-    <form>
-        <label for="input-name">name: </label>
-        <input required id="input-name" name="name">
-        <br>
-        <label for="input-price">price: </label>
-        <input required id="input-price" name="price">
-        <button formaction="/store/addStoreItem">Add</button>
-    </form>
-    -->
+
     <div class="addItemForm">
+        <h3>Add item to shop</h3>
         <form>
             <div class="nameField">
                 <label for="name" class="label">Name: </label>
@@ -37,18 +29,35 @@
             </button>
         </form>
     </div>
+
     <br>
+    <!--
     <div th:each="storeitem : ${storeitems}" class="itemListing">
-        <span th:text="${storeitem.getName()}"></span>
+        <span th:text="${storeitem.getName()}" id="item-name"></span>
+        <input th:value="${storeitem.getName()}" id="edit-name" class="edit-name-input">
+        <br>
+        <span>Price: </span>
         <span th:text="${storeitem.getPrice()}"></span>
-        <form id="del">
+        <span> ,-</span>
+        <br>
+        <div style="display:inline-block;">
+            <button onclick="saveItem()" style="display:none" id="edit-save">Save</button>
             <input type="hidden" th:value="${storeitem.getId()}" name="id">
-            <button formaction="store/deleteStoreItem">Delete</button>
-        </form>
+            <button onclick="editItem()" id="edit-btn">Edit</button>
+        </div>
+        <div id="del" style="display:inline-block;">
+            <input type="hidden" th:value="${storeitem.getId()}" id="getid">
+            <input type="hidden" th:value="${storeitem.getName()}" id="getname">
+            <button onclick="delItem(document.getElementById('getid').value,document.getElementById('getname').value)">Delete</button>
+        </div>
+    </div>
+    -->
+
+    <!-- Generated in store.js -->
+    <div id="item-list-div">
     </div>
 
-
 </body>
-<script>src="../static/js/store.js"</script>
+<script src="../static/js/store.js"></script>
 
 </html>

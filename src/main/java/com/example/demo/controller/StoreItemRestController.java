@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Activity;
 import com.example.demo.model.StoreItem;
 import com.example.demo.repository.StoreItemRepository;
 import com.example.demo.service.Store;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,7 +20,7 @@ public class StoreItemRestController {
         this.storeItemRepository = storeItemRepository;
     }
 
-    //POST Virker fra postman
+    //POST Virker fra postman og GUI
 
     @PostMapping(value="/newStoreItem",consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,10 +42,22 @@ public class StoreItemRestController {
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-
     }
 
-    //Funktionelt
+    @GetMapping("/store/item/all")
+    public List<StoreItem> getAllItems(){
+        return storeItemRepository.findAll();
+    }
+
+    //DEL virker fra postman
+    @ResponseStatus(code= HttpStatus.NO_CONTENT)
+    @DeleteMapping("/store/deleteItem/{id}")
+    public void deleteActivity(@PathVariable Long id){
+        storeItemRepository.delete(storeItemRepository.getOne(id));
+    }
+
+
+    //Funktionelt - ikke REST
 
     @GetMapping("/store/addStoreItem")
     public RedirectView addStoreItem(@RequestParam String name, double price){
