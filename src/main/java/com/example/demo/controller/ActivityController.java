@@ -16,8 +16,6 @@ public class ActivityController {
 
     @GetMapping("/index")
     public String test(){
-        Activity act = new Activity("Paintball", 10, 10, "Kom og spil paintball");
-        activityRepository.save(act);
         return "index";
     }
 
@@ -31,5 +29,10 @@ public class ActivityController {
     public String gallery(){
         return "activity_gallery";
     }
+
+//    @GetMapping("/activites/create")
+//    public String createActivity(){
+//
+//    }
 
 }

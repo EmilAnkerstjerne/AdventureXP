@@ -5,19 +5,18 @@
     <title>Activities</title>
 </head>
 <body>
-    <h1>Activities</h1>
+    <h1>Activities <button type="button" class="btn goToCreateActivity" onclick="/">Create activity</button></h1>
 
-    <div th:each="activity : ${activities}">
+    <div th:each="activity : ${activities}" style="border: 1px solid black;width: 50%; display: inline-block; border-radius: 25px;padding: 20px;margin: 2px">
         <h2><span th:text="${activity.getName()}"></span></h2>
         <span>Maks </span><span th:text="${activity.getMaxParticipants()}"></span><span> personer.</span>
         <br>
-        <span th:text="${activity.getDescription()}"></span>
-        <form id="del">
-            <input type="hidden" th:value="${activity.getId()}" name="id">
-            <button formaction="deleteActivity">Delete</button>
-        </form>
-
+        <span th:text="${activity.getDescription()}" style="display: inline-block"></span>
+        <br>
+        <button type="button" class="btn editActivity" th:value="${activity.getId()}">Edit activity</button>
+        <button type="button" class="btn deleteActivity" th:value="${activity.getId()}" onclick="deleteAct()">Delete activity</button>
     </div>
 
+<script src="../static/js/activities.js"></script>
 </body>
 </html>

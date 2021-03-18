@@ -3,9 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.model.Activity;
 import com.example.demo.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -16,10 +15,17 @@ public class ActivityRestController {
     ActivityRepository activityRepository;
 
 
-    @GetMapping("/deleteActivity")
-    public RedirectView deleteActivity(@RequestParam int id){
+    @ResponseStatus(code= HttpStatus.NO_CONTENT)
+    @DeleteMapping("/activities/deleteActivity/{id}")
+    public RedirectView deleteActivity(@PathVariable int id){
         activityRepository.delete(activityRepository.getOne(id));
         return new RedirectView("/activities");
+    }
+
+    @PostMapping(value = "/activities/create/save", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Activity postActivity(@RequestBody Activity activity){
+        return activityRepository.save(activity);
     }
 
     @GetMapping("/activities/all")
