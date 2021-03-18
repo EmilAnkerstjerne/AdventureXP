@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.StoreItem;
 import com.example.demo.repository.StoreItemRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class StoreItemController {
         //storeItemRepository.save(cola);
         model.addAttribute("storeitems", storeItemRepository.findAll());
 
-        return "StoreItemTemp";
+        return "storeItemTemp";
     }
 
 
