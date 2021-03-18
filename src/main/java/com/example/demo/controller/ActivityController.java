@@ -21,7 +21,7 @@ public class ActivityController {
 
     @GetMapping("/activities")
     public String Activity(Model model){
-        model.addAttribute("activities", activityRepository.findAll());
+//        model.addAttribute("activities", activityRepository.findAll());
         return "activities";
     }
 
