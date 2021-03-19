@@ -1,13 +1,16 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.*;
 import com.sun.istack.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+//Helping with identifying via id?
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//Potentially still responsible for fixing lazy error
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Activity {
 
     @Id
@@ -22,6 +25,19 @@ public class Activity {
     private String description;
     @NotNull
     private double minDurationHours;
+
+    /* Annotations that might have relevance
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonBackReference
+    @JsonManagedReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+     */
+    //Used to make relation to Reservation
+    @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@ActivityReservation")
+    //Used to get objects as id in json
+    @JsonIdentityReference(alwaysAsId = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "activity")
+    private List<Reservation> reservations;
 
     public Activity() {
     }
@@ -67,5 +83,24 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", maxParticipants=" + maxParticipants +
+                ", description='" + description + '\'' +
+                ", minDurationHours=" + minDurationHours +
+                '}';
     }
 }

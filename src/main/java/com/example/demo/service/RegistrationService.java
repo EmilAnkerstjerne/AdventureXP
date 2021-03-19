@@ -24,6 +24,7 @@ public class RegistrationService implements RegistrationServiceInt{
         user.setRoles("ROLE_USER");
         user.setActive(true);
         user.setId(0);
+        //user.setReservations(new ArrayList<Reservation>());
 
         return userRepository.save(user);
     }

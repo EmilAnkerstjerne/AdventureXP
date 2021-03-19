@@ -33,4 +33,12 @@ public class ActivityRestController {
         return activityRepository.findAll();
     }
 
+    @GetMapping("/activities/all/noReservations")
+    public List<Activity> getAllActivitiesWithoutReservations(){
+        List<Activity> list = activityRepository.findAll();
+        for(Activity a : list){
+            a.setReservations(null);
+        }
+        return list;
+    }
 }

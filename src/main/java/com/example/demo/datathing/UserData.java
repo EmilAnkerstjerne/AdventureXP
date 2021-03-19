@@ -1,12 +1,17 @@
 package com.example.demo.datathing;
 
 import com.example.demo.model.Activity;
+import com.example.demo.model.Reservation;
 import com.example.demo.model.User;
 import com.example.demo.repository.ActivityRepository;
+import com.example.demo.repository.ReservationRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.sql.Date;
+import java.sql.Time;
 
 //TODO: Adds data
 @Component
@@ -18,8 +23,13 @@ public class UserData implements CommandLineRunner {
     @Autowired
     ActivityRepository activityRepository;
 
+    @Autowired
+    ReservationRepository reservationRepository;
+
     @Override
     public void run(String... args) throws Exception {
+
+        //----------Test data for users----------
         User user1 = new User();
         user1.setUsername("Admin");
         user1.setPassword("root");
@@ -60,5 +70,70 @@ public class UserData implements CommandLineRunner {
         activityRepository.save(act2);
         activityRepository.save(act3);
         activityRepository.save(act4);
+
+        //----------Test data for reservations----------
+        Reservation res1 = new Reservation(
+                new Date(1616540400000l),
+                new Time(46800000),
+                new Time(54000000),
+                activityRepository.findById(1).get(),
+                userRepository.findById(2).get()
+        );
+
+        Reservation res2 = new Reservation(
+                new Date(1616454000000l),
+                new Time(46800000),
+                new Time(54000000),
+                activityRepository.findById(1).get(),
+                userRepository.findById(2).get()
+        );
+
+        Reservation res3 = new Reservation(
+                new Date(1616540400000l),
+                new Time(32400000),
+                new Time(39600000),
+                activityRepository.findById(1).get(),
+                userRepository.findById(3).get()
+        );
+
+        Reservation res4 = new Reservation(
+                new Date(1616626800000l),
+                new Time(28800000),
+                new Time(32400000),
+                activityRepository.findById(2).get(),
+                userRepository.findById(3).get()
+        );
+
+        Reservation res5 = new Reservation(
+                new Date(1616626800000l),
+                new Time(43200000),
+                new Time(54000000),
+                activityRepository.findById(3).get(),
+                userRepository.findById(2).get()
+        );
+
+        reservationRepository.save(res1);
+        reservationRepository.save(res2);
+        reservationRepository.save(res3);
+        reservationRepository.save(res4);
+        reservationRepository.save(res5);
+
+
+        /*
+        Date date = new Date(1616626800000l);
+
+        Time time = new Time(43200000);
+
+        System.out.println(date);
+        System.out.println(time);
+
+        String d = date.toString();
+
+        String t = time.toString();
+
+        System.out.println(d + " " + t);
+        //date.
+
+         */
     }
 }
