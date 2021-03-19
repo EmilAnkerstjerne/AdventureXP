@@ -35,9 +35,12 @@ function generateHTMLList(item){
     hiddenName.value = item.name;
     hiddenName.className = "edit-name-input";
 
-
     let price = document.createElement("span");
     price.innerHTML = "Price: " + item.price + ",-";
+
+    let hiddenPrice = document.createElement("input");
+    hiddenPrice.value = item.price;
+    hiddenPrice.className = "edit-price-input";
 
     let buttonsDiv = document.createElement("div");
     buttonsDiv.style.display ="inline-block";
@@ -51,7 +54,9 @@ function generateHTMLList(item){
         saveButton.style.display = "inline-block";
         editButton.style.display = "none";
         hiddenName.style.display = "inline-block";
+        hiddenPrice.style.display = "inline-block";
         name.style.display = "none";
+        price.style.display = "none";
         };
 
     let saveButton = document.createElement("button");
@@ -61,15 +66,19 @@ function generateHTMLList(item){
     saveButton.id = "edit-save"
     saveButton.onclick =
         function saveItem(){
-        editButton.style.display = "inline-block";
-        saveButton.style.display = "none";
+            editButton.style.display = "inline-block";
+            saveButton.style.display = "none";
             hiddenName.style.display = "none";
+            hiddenPrice.style.display = "none"
             name.style.display = "inline-block";
+            price.style.display = "inline-block";
+
             xhr.open("POST", postUrl, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            let data = JSON.stringify({"id": item.id,"name": hiddenName.value,"price": item.price});
+            let data = JSON.stringify({"id": item.id,"name": hiddenName.value,"price": hiddenPrice.value});
             xhr.send(data);
             name.innerHTML = hiddenName.value;
+            price.innerHTML = "Price: " + hiddenPrice.value + ",-";
         };
 
     let deleteButton = document.createElement("button");
@@ -87,6 +96,7 @@ function generateHTMLList(item){
     div.appendChild(hiddenName);
     div.appendChild(document.createElement("br"));
     div.appendChild(price);
+    div.appendChild(hiddenPrice);
     div.appendChild(document.createElement("br"));
     div.appendChild(buttonsDiv);
     buttonsDiv.appendChild(editButton);

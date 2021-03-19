@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+    body{
+        font-family: 'Poppins', sans-serif;
+    }
+    .logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 10%;
+        height: 75%;
+        alignment: center;
+
+    }
+    #navbar{
+        background-color: #fed767;
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        /* red border from logo: border: 2px solid #e43d0a */
+        border:2px solid #0099ea;
+        border-bottom: none;
+    }
+    .navbar-link{
+        display: inline-block;
+        width: 19%;
+        height: 25px;
+        text-align: center;
+        /*
+        border-right: 1px solid #e0c93d;
+        border-left: 1px solid #e0c93d;
+         */
+
+    }
+    .navbar-link:hover{
+        cursor: pointer;
+        background-color: #efd792;
+    }
+
+    #navbar-container{
+        text-align: center;
+        background-color: #f5e0a3;
+    }
+
+
+</style>
+<body>
+    <header id="navbar">
+        <img src="../static/images/logo.png" class="logo" alt="AdventureXP logo">
+        <div id="navbar-container">
+            <div class="navbar-link">Home</div>
+            <div class="navbar-link">Activities</div>
+            <div class="navbar-link">Booking</div>
+            <div class="navbar-link">4</div>
+            <div class="navbar-link">4</div>
+        </div>
+    </header>
+</body>
+</html>

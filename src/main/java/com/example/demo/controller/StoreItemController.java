@@ -29,6 +29,11 @@ public class StoreItemController {
         return "store";
     }
 
+    //testing
+    @GetMapping("/navbar")
+    public String navBarTest(){
+        return "navbarTest";
+    }
 
 }
 

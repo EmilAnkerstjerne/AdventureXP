@@ -57,10 +57,11 @@ button{
     margin: 5px;
 }
 
-.edit-name-input{
+.edit-name-input, .edit-price-input{
     text-align: center;
     display:none;
     width: 140px;
     max-width: 150px;
     font-family: inherit;
 }
+
