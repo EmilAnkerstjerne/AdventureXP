@@ -18,8 +18,6 @@ public class StoreItemController {
 
     @GetMapping("/store")
     public String StoreItem(Model model){
-        //StoreItem cola = new StoreItem("cola",20.95);
-        //storeItemRepository.save(cola);
         model.addAttribute("storeitems", storeItemRepository.findAll());
 
         return "storeItemTemp";
