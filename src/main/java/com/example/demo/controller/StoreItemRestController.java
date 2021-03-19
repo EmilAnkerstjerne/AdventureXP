@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 public class StoreItemRestController {
-    private StoreItemRepository storeItemRepository;
+    private final StoreItemRepository storeItemRepository;
 
     public StoreItemRestController(StoreItemRepository storeItemRepository) {
         this.storeItemRepository = storeItemRepository;
@@ -66,8 +66,9 @@ public class StoreItemRestController {
     @GetMapping("/store/deleteStoreItem")
     public RedirectView delStoreItem(@RequestParam Long id){
         storeItemRepository.delete(storeItemRepository.getOne(id));
-
         return new RedirectView("/store");
     }
+
+
 
 }

@@ -16,13 +16,18 @@ public class StoreItemController {
     }
 
 
-    @GetMapping("/store")
+    @GetMapping("/store/manage")
     public String StoreItem(Model model){
         model.addAttribute("storeitems", storeItemRepository.findAll());
 
         return "storeItemTemp";
     }
 
+    @GetMapping("/store")
+    public String store(Model model){
+        model.addAttribute("storeitems", storeItemRepository.findAll());
+        return "store";
+    }
 
 
 }

@@ -1,0 +1,32 @@
+@import "storeItemManageStyle.css";
+
+body{
+    text-align: left;
+}
+#basket-div{
+    /*margin: auto;*/
+    display: inline-block;
+}
+#list-div h3{
+    text-align: center;
+}
+
+#outer-list-div{
+    float: left;
+    width: 80%;
+}
+#outer-basket-div{
+    float: right;
+    width: 19%;
+    text-align: center;
+    border-left: 1px solid #8c8c8c;
+    /*border-bottom: 1px solid #8c8c8c;*/
+    padding-bottom: 24px;
+
+}
+
+
+#payment{
+    visibility: hidden;
+    width: 150px;
+}
