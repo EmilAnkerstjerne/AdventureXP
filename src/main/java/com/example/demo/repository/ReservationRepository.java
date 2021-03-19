@@ -10,4 +10,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
     @Query("SELECT r FROM Reservation r WHERE r.user.id = ?1")
     List<Reservation> getUsersReservations(int userId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.user.id = ?1 AND r.date >= CURDATE()")
+    List<Reservation> getUsersCurrentReservations(int userId);
+
+    @Query("SELECT r FROM Reservation r WHERE r.activity.id = ?1 AND r.date = ?2")
+    List<Reservation> getActivityReservationsForDay(int activityId, String date);
 }

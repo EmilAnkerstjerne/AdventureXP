@@ -22,8 +22,7 @@ public class BookingRestController {
     BookingServiceInt bookingServiceInt;
 
     @GetMapping("/booking/reservation/{id}")
-    public ResponseEntity<Reservation> getReservationById(@PathVariable int id, Principal principal){
-        System.out.println(principal.getName());
+    public ResponseEntity<Reservation> getReservationById(@PathVariable int id){
         Optional<Reservation> reservation = reservationRepository.findById(id);
         if (reservation.isPresent()){
             Reservation realReservation = reservation.get();
@@ -39,13 +38,19 @@ public class BookingRestController {
     }
 
     @PostMapping(value = "/booking/reserve/{id}", consumes = "application/json")
-    public ResponseEntity<Reservation> reserve(@PathVariable int id, @RequestBody Reservation reservation){
-        return null;
+    public ResponseEntity<Reservation> reserve(@PathVariable int activityId, @RequestBody Reservation reservation, Principal principal){
+        Reservation newReservation = bookingServiceInt.newReservation(reservation, principal, activityId);
+        if (newReservation == null){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }else {
+            return new ResponseEntity<>(newReservation, HttpStatus.CREATED);
+        }
     }
 
     @GetMapping("/booking/myReservations")
     public List<Reservation> myReservations(Principal principal){
-        return null;
+        List<Reservation> list = bookingServiceInt.getUsersCurrentReservations(principal);
+        return list;
     }
 
     @PutMapping("/booking/edit")
@@ -56,7 +61,14 @@ public class BookingRestController {
 
     @DeleteMapping("/booking/delete/{id}")
     public ResponseEntity<Integer> deleteReservation(@PathVariable int id, Principal principal){
-        return null;
+
+        boolean deleted = bookingServiceInt.deleteById(principal, id);
+
+        if (deleted){
+            return new ResponseEntity<Integer>( id, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
+        }
     }
 
 }
