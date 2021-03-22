@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 //TODO: Adds data
 @Component
@@ -73,41 +75,41 @@ public class UserData implements CommandLineRunner {
 
         //----------Test data for reservations----------
         Reservation res1 = new Reservation(
-                new Date(1616540400000l),
-                new Time(46800000),
-                new Time(54000000),
+                LocalDate.of(2021, 3, 24),
+                LocalTime.of(14, 0),
+                LocalTime.of(16, 0),
                 activityRepository.findById(1).get(),
                 userRepository.findById(2).get()
         );
 
         Reservation res2 = new Reservation(
-                new Date(1616454000000l),
-                new Time(46800000),
-                new Time(54000000),
+                LocalDate.of(2021, 3, 23),
+                LocalTime.of(14, 0),
+                LocalTime.of(16, 0),
                 activityRepository.findById(1).get(),
                 userRepository.findById(2).get()
         );
 
         Reservation res3 = new Reservation(
-                new Date(1616540400000l),
-                new Time(32400000),
-                new Time(39600000),
+                LocalDate.of(2021, 3, 24),
+                LocalTime.of(10, 0),
+                LocalTime.of(12, 0),
                 activityRepository.findById(1).get(),
                 userRepository.findById(3).get()
         );
 
         Reservation res4 = new Reservation(
-                new Date(1616626800000l),
-                new Time(28800000),
-                new Time(32400000),
+                LocalDate.of(2021, 3, 25),
+                LocalTime.of(9, 0),
+                LocalTime.of(10, 0),
                 activityRepository.findById(2).get(),
                 userRepository.findById(3).get()
         );
 
         Reservation res5 = new Reservation(
-                new Date(1616626800000l),
-                new Time(43200000),
-                new Time(54000000),
+                LocalDate.of(2021, 3, 25),
+                LocalTime.of(13, 0),
+                LocalTime.of(16, 0),
                 activityRepository.findById(3).get(),
                 userRepository.findById(2).get()
         );

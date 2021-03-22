@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +39,7 @@ public class BookingRestController {
         return reservationRepository.getUsersReservations(id);
     }
 
-    @PostMapping(value = "/booking/reserve/{id}", consumes = "application/json")
+    @PostMapping(value = "/booking/reserve/{activityId}", consumes = "application/json")
     public ResponseEntity<Reservation> reserve(@PathVariable int activityId, @RequestBody Reservation reservation, Principal principal){
         Reservation newReservation = bookingServiceInt.newReservation(reservation, principal, activityId);
         if (newReservation == null){
@@ -77,7 +79,9 @@ public class BookingRestController {
 
     @GetMapping("/booking/reservation/day/{date}/{activityId}")
     public List<Reservation> getReservationByDay(@PathVariable String date, @PathVariable int activityId){
-        return reservationRepository.getActivityReservationsForDay(activityId, date);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate newDate = LocalDate.parse(date);
+        return reservationRepository.getActivityReservationsForDay(activityId, newDate);
     }
 
 }

@@ -6,6 +6,8 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -16,13 +18,14 @@ public class Reservation {
     private int id;
 
     @NotNull
-    private Date date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
     @NotNull
-    private Time startTime;
+    private LocalTime startTime;
 
     @NotNull
-    private Time endTime;
+    private LocalTime endTime;
 
 /* Annotations that might have some relevance
     @JsonManagedReference
@@ -54,7 +57,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Date date, Time startTime, Time endTime, Activity activity, User user) {
+    public Reservation(LocalDate date, LocalTime startTime, LocalTime endTime, Activity activity, User user) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -72,27 +75,27 @@ public class Reservation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.sql.Date;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,7 +61,7 @@ public class BookingService implements BookingServiceInt{
             return null;
         }
 
-        List<Reservation> reservations = reservationRepository.getActivityReservationsForDay(activityId, reservation.getDate().toString());
+        List<Reservation> reservations = reservationRepository.getActivityReservationsForDay(activityId, reservation.getDate()); //Removed to string
         if (!checkAvailability(reservations, reservation)){
             return null;
         }
@@ -82,16 +80,12 @@ public class BookingService implements BookingServiceInt{
         return activity.isPresent();
     }
 
-    public boolean checkDate(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    public boolean checkDate(LocalDate date){
+        LocalDate now = LocalDate.now();
 
-        Calendar cal = Calendar.getInstance();
+        String today = now.toString();
 
-        String today = sdf.format(cal.getTime());
-
-        cal.add(Calendar.DAY_OF_MONTH, bookableDays);
-
-        String limit = sdf.format(cal);
+        String limit = now.plusDays(bookableDays).toString();
 
         if (date.toString().compareTo(today) < 0){
             return false; //If requested is before today
@@ -104,26 +98,30 @@ public class BookingService implements BookingServiceInt{
         return true;
     }
 
-    public boolean checkTimes(Time start, Time end, int activityId){
+    public boolean checkTimes(LocalTime start, LocalTime end, int activityId){
         if (start.toString().compareTo(end.toString()) > 0){
             return false;
         }
         String[] startTimeArr = start.toString().split(":");
         String[] endTimeArr = end.toString().split(":");
 
+        /*
         if (!startTimeArr[2].equals("00") || !endTimeArr.equals("00")){
             return false;
         }
+         */
 
-        float startTime = Integer.parseInt(startTimeArr[0]) + (Integer.parseInt(startTimeArr[1]) / 60f);
-        float endTime = Integer.parseInt(endTimeArr[0]) + (Integer.parseInt(endTimeArr[1]) / 60f);
+        float startTime = (Integer.parseInt(startTimeArr[0]) + (Integer.parseInt(startTimeArr[1])) / 60f);
+        float endTime = (Integer.parseInt(endTimeArr[0]) + (Integer.parseInt(endTimeArr[1])) / 60f);
 
         if (startTime < openingTime){
             return false;
         }
+
         if (endTime > closingTime){
             return false;
         }
+
 
         int startMin = Integer.parseInt(startTimeArr[1]);
         int endMin = Integer.parseInt(endTimeArr[1]);
@@ -134,7 +132,7 @@ public class BookingService implements BookingServiceInt{
 
         double minDuration = activityRepository.findById(activityId).get().getMinDurationHours();
 
-        if (minDuration > endTime - startTime){
+        if (minDuration > (endTime - startTime)){
             return false;
         }
 
@@ -216,7 +214,7 @@ public class BookingService implements BookingServiceInt{
             return null;
         }
 
-        List<Reservation> reservations = reservationRepository.getActivityReservationsForDay(currentReservation.getActivity().getId(), reservation.getDate().toString());
+        List<Reservation> reservations = reservationRepository.getActivityReservationsForDay(currentReservation.getActivity().getId(), reservation.getDate()); //Removed to string
         reservations.remove(currentReservation);
 
         if (!checkAvailability(reservations, reservation)){
