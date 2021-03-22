@@ -4,6 +4,7 @@ import com.example.demo.model.Activity;
 import com.example.demo.repository.ActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -20,6 +21,11 @@ public class ActivityRestController {
     public RedirectView deleteActivity(@PathVariable int id){
         activityRepository.delete(activityRepository.getOne(id));
         return new RedirectView("/activities");
+    }
+
+    @GetMapping("/activities/{id}")
+    public Activity getActivityById(@PathVariable int id){
+        return activityRepository.getOne(id);
     }
 
     @PostMapping(value = "/activities/create/save", consumes = "application/json")
