@@ -21,6 +21,8 @@ let postRequest = {
     body: body1
 }
 
+
+
 function save() {
 
     let name = document.getElementById("name").value;
@@ -28,24 +30,9 @@ function save() {
     let description = document.getElementById("description").value;
     let minDuration = document.getElementById("min-duration").value;
 
-    // let activity = {
-    //     "name": document.getElementById("name").value,
-    //     "maxParticipants": document.getElementById("max-participants").value,
-    //     "description": document.getElementById("description"),
-    //     "minDurationHours": document.getElementById("min-duration")
-    // }
-
-
-
-
-
-
-
-
     if(name === "" || maxParticipant === "" || minDuration === "" || description === "") {
         alert("All fields have to be filled")
     }else{
-        console.log("askdjbasd")
         activity.name = name;
         activity.description = description;
         activity.maxParticipants = maxParticipant;
@@ -56,7 +43,7 @@ function save() {
         postRequest.body = body1;
 
         fetch(postUrl, postRequest)
-            .catch((error) => console.log("error"));
+            .catch((error) => console.log("error: " + error));
 
         location.reload();
     }
