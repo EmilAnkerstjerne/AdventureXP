@@ -55,8 +55,12 @@ public class BookingRestController {
 
     @PutMapping("/booking/edit")
     public ResponseEntity<Reservation> editReservation(@RequestBody Reservation reservation, Principal principal){
-        //Ended?
-        return null;
+        Reservation realReservation = bookingServiceInt.editReservation(reservation, principal);
+        if (reservation == null){
+            return new ResponseEntity<>(realReservation, HttpStatus.BAD_REQUEST);
+        }else {
+            return new ResponseEntity<>(realReservation, HttpStatus.OK);
+        }
     }
 
     @DeleteMapping("/booking/delete/{id}")
@@ -69,6 +73,11 @@ public class BookingRestController {
         }else {
             return new ResponseEntity<Integer>(0, HttpStatus.NO_CONTENT);
         }
+    }
+
+    @GetMapping("/booking/reservation/day/{date}/{activityId}")
+    public List<Reservation> getReservationByDay(@PathVariable String date, @PathVariable int activityId){
+        return reservationRepository.getActivityReservationsForDay(activityId, date);
     }
 
 }

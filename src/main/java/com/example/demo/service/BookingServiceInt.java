@@ -12,4 +12,6 @@ public interface BookingServiceInt {
     public boolean deleteById(Principal principal, int reservationId);
 
     public Reservation newReservation(Reservation reservation, Principal principal, int activityId);
+
+    public Reservation editReservation(Reservation reservation, Principal principal);
 }

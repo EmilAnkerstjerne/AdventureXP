@@ -38,7 +38,7 @@ public class BookingService implements BookingServiceInt{
         - Null
         - Activity=Active
         - start<End && Opening hours
-        - start&end = 15%==0
+        - start&end = 15%=0
         - MinDuration
         - Date = allowed
         -
@@ -59,7 +59,7 @@ public class BookingService implements BookingServiceInt{
             return null;
         }
 
-        if (!checkTimes(reservation.getStartTime(), reservation.getEndTime())){
+        if (!checkTimes(reservation.getStartTime(), reservation.getEndTime(), activityId)){
             return null;
         }
 
@@ -104,21 +104,67 @@ public class BookingService implements BookingServiceInt{
         return true;
     }
 
-    public boolean checkTimes(Time start, Time end){
+    public boolean checkTimes(Time start, Time end, int activityId){
         if (start.toString().compareTo(end.toString()) > 0){
             return false;
         }
+        String[] startTimeArr = start.toString().split(":");
+        String[] endTimeArr = end.toString().split(":");
 
+        if (!startTimeArr[2].equals("00") || !endTimeArr.equals("00")){
+            return false;
+        }
+
+        float startTime = Integer.parseInt(startTimeArr[0]) + (Integer.parseInt(startTimeArr[1]) / 60f);
+        float endTime = Integer.parseInt(endTimeArr[0]) + (Integer.parseInt(endTimeArr[1]) / 60f);
+
+        if (startTime < openingTime){
+            return false;
+        }
+        if (endTime > closingTime){
+            return false;
+        }
+
+        int startMin = Integer.parseInt(startTimeArr[1]);
+        int endMin = Integer.parseInt(endTimeArr[1]);
+
+        if (startMin%15 > 0 || endMin%15 > 0){
+            return false;
+        }
+
+        double minDuration = activityRepository.findById(activityId).get().getMinDurationHours();
+
+        if (minDuration > endTime - startTime){
+            return false;
+        }
 
         return true;
     }
 
     public boolean checkAvailability(List<Reservation> reservations, Reservation reservation){
-        return false;
+
+        for (Reservation r : reservations){
+            String newStart = reservation.getStartTime().toString();
+            String newEnd = reservation.getEndTime().toString();
+
+            String oldStart = r.getStartTime().toString();
+            String oldEnd = r.getEndTime().toString();
+
+            if (newStart.compareTo(oldStart) >= 0 && newStart.compareTo(oldEnd) <= 0){
+                return false;
+            }
+
+            if (newEnd.compareTo(oldStart) >= 0 && newEnd.compareTo(oldEnd) <= 0){
+                return false;
+            }
+
+            if (newStart.compareTo(oldStart) <= 0 && newEnd.compareTo(oldEnd) >= 0){
+                return false;
+            }
+        }
+
+        return true;
     }
-
-
-    //public boolean
 
     public List<Reservation> getUsersCurrentReservations(Principal principal){
         if (principal == null){
@@ -141,4 +187,47 @@ public class BookingService implements BookingServiceInt{
         }
     }
 
+    public Reservation editReservation(Reservation reservation, Principal principal) {
+        //Real reservation
+        //User-reservation
+        //Legal
+        //Available - Not current
+
+        if (reservation == null ||
+                reservation.getStartTime() == null ||
+                reservation.getEndTime() == null ||
+                reservation.getDate() == null) {
+            return null;
+        }
+
+        User user = userRepository.findByUsername(principal.getName()).get();
+
+        Reservation currentReservation = reservationRepository.findById(reservation.getId()).get();
+
+        if (!(user==currentReservation.getUser())){
+            return null;
+        }
+
+        if (!checkDate(reservation.getDate())){
+            return null;
+        }
+
+        if (!checkTimes(reservation.getStartTime(), reservation.getEndTime(), currentReservation.getActivity().getId())){
+            return null;
+        }
+
+        List<Reservation> reservations = reservationRepository.getActivityReservationsForDay(currentReservation.getActivity().getId(), reservation.getDate().toString());
+        reservations.remove(currentReservation);
+
+        if (!checkAvailability(reservations, reservation)){
+            return null;
+        }
+
+        currentReservation.setDate(reservation.getDate());
+        currentReservation.setStartTime(reservation.getStartTime());
+        currentReservation.setEndTime(reservation.getEndTime());
+
+        reservationRepository.save(currentReservation);
+        return currentReservation;
+    }
 }
