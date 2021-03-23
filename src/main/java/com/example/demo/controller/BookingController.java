@@ -13,6 +13,6 @@ public class BookingController {
 
     @GetMapping("/bookings")
     public String bookings(){
-        return "bookings";
+        return "booking_my";
     }
 }
