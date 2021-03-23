@@ -58,8 +58,8 @@ public class BookingRestController {
     @PutMapping("/booking/edit")
     public ResponseEntity<Reservation> editReservation(@RequestBody Reservation reservation, Principal principal){
         Reservation realReservation = bookingServiceInt.editReservation(reservation, principal);
-        if (reservation == null){
-            return new ResponseEntity<>(realReservation, HttpStatus.BAD_REQUEST);
+        if (realReservation == null){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }else {
             return new ResponseEntity<>(realReservation, HttpStatus.OK);
         }

@@ -180,11 +180,12 @@ function start(){
     setFirstMonday();
     loadActivity(1); //TODO: ActivityID
     pastBtn.disabled = true;
+    weekCount.innerHTML = currentWeek;
 
     let date = new Date;
     dateInp.setAttribute("min", date.toISOString().split("T")[0]);
     date = addDays(date, 30);
-    dateInp.setAttribute("max", date.toISOString().split("T")[0])
+    dateInp.setAttribute("max", date.toISOString().split("T")[0]);
 }
 
 function nextWeek(){
@@ -244,7 +245,6 @@ function reserve(){
                 console.log("Failed")
                 warn.innerHTML = "Booking failed: Please check your input or reload page";
             }
-
             loadCalendar();
         })
 }

@@ -6,6 +6,55 @@ body{    font-family: 'Poppins', sans-serif;
     border-radius: 5px;
     padding: 3px;
 
-    margin: auto;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+.res-box:hover{
+    cursor: pointer;
+}
+.grid-container{
+    display: grid;
+    margin-left: 5%;
+    margin-right: 5%;
+    grid-template-columns: 60% 30%;
+    column-gap: 10px;
+    row-gap: 0;
+}
+.grid-item{
+
+}
+.btn{
+    margin-right: 10px;
+}
+.res-title{
+    margin-left: 20px;
+    width: fit-content;
+}
+.res-time{
+    margin-left: 30px;
+    width: fit-content;
+}
+.res-date{
+    margin-left: 30px;
+    width: fit-content;
+}
+.res-link{
     text-decoration: none;
+    color: black;
+}
+.form{
+    border: solid 5px;
+    padding: 10px;
+    height: 400px;
+    width: 300px;
+}
+.res-con{
+    background-color: #f1f1f1;
+    padding-top: 20px;
+    border-radius: 3px;
+}
+.warn{
+    color: red;
 }
