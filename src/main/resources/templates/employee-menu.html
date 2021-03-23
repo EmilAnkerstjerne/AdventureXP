@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Menu</title>
+    <link rel="stylesheet" href="../static/css/emMenuStyle.css" type="text/css">
+
+</head>
+<body>
+    <div class="container">
+
+        <a th:href="@{/activities}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Activities
+            </div></div>
+        </div></a>
+
+        <a th:href="@{/}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Booking calendar
+            </div></div>
+        </div></a>
+
+        <a th:href="@{/store}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Cashier interface (store)
+            </div></div>
+        </div></a>
+
+        <a th:href="@{/store/manage}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Manage items (store)
+            </div></div>
+        </div></a>
+
+        <a th:href="@{/activities/gallery}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Website
+            </div></div>
+        </div></a>
+
+        <a th:href="@{/}"><div class="menu-element">
+            <div class="menu-element-inner"><div class="menu-element-span">
+                Work schedule
+            </div></div>
+        </div></a>
+
+
+    </div>
+
+
+</body>
+</html>
