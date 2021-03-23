@@ -178,7 +178,17 @@ function setFirstMonday(){
 
 function start(){
     setFirstMonday();
-    loadActivity(1); //TODO: ActivityID
+
+    fetch("/scopedproxy/form", requestObjectGet)
+        .then(response => response.text())
+        .then(data => {
+            if (data !== null){
+                loadActivity(data)
+            } else {
+                window.location.href = "/activities/gallery";
+            }
+        })
+
     pastBtn.disabled = true;
     weekCount.innerHTML = currentWeek;
 

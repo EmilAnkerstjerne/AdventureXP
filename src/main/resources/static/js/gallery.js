@@ -45,8 +45,7 @@ function makeGridItem(activity){
 
     const bookBtn = document.createElement("a");
     bookBtn.className = "bookingBtn";
-    bookBtn.setAttribute("href", "/booking/" + 1);
-
+    bookBtn.setAttribute("value", activity.id);
 
     const bookBtnCon = document.createTextNode("Book");
     bookBtn.appendChild(bookBtnCon);
@@ -68,3 +67,16 @@ function loadActivities(){
 }
 
 loadActivities();
+
+function book(ev){
+    let el = ev.target;
+
+    if (el.className === "bookingBtn"){
+        let id = el.getAttribute("value");
+
+        fetch("/scopedproxy/form/" + id, requestObject)
+            .then(() => window.location.href = "/booking")
+    }
+}
+
+document.addEventListener("click", ev => book(ev));
