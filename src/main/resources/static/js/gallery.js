@@ -1,3 +1,5 @@
+let billy = "Billy";
+
 const gridCon = document.querySelector(".grid-container");
 
 const requestObject = {
