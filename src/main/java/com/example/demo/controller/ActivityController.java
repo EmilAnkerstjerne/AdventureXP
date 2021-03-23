@@ -33,7 +33,8 @@ public class ActivityController {
         return "create_activities";
     }
 
-
-
-
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/activities/gallery";
+    }
 }
