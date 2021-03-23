@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="../static/css/storeItemManageStyle.css" type="text/css">
 </head>
 <body>
-    <p></p>
-
+    <div style="text-align: left">
+        <div class="nav-buttons"><a th:href="@{/emenu}"><button>Menu</button></a></div>
+        <div class="nav-buttons"><button onclick="window.location.reload()">Reload</button></div>
+    </div>
     <div class="addItemForm">
         <h3>Add item to shop</h3>
         <form>

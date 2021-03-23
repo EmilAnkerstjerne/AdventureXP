@@ -28,6 +28,7 @@ function generateHTML(item){
     let counter = 1;
     let basketItem = document.createElement("div");
     basketItem.className = "itemListing";
+    basketItem.style.display ="";
 
     let nameB = document.createElement("span");
     nameB.innerHTML = item.name;
@@ -39,9 +40,10 @@ function generateHTML(item){
     priceB.innerHTML = "Price: " + item.price + ",-";
 
     let priceTotal = document.createElement("span");
-    priceTotal.innerHTML = "Total: " + totalPrice + ",-";
+    priceTotal.innerHTML = "Total: " + totalPrice.toFixed(2) + ",-";
 
     let br = document.createElement("br");
+    let br2 = document.createElement("br");
 
     let addToBasket = document.createElement("button");
     addToBasket.innerHTML = "Add to basket";
@@ -52,18 +54,21 @@ function generateHTML(item){
             if(idList.includes(item.id)){
                 counter++;
                 count.innerHTML = " x "+counter;
-                priceB.innerHTML = priceB.innerHTML = "Price: " + item.price*counter + ",-";
+                let rprice = item.price*counter;
+                priceB.innerHTML = priceB.innerHTML = "Price: " + rprice.toFixed(2) + ",-";
+
 
             }
             totalPrice = totalPrice + item.price;
-            priceTotal.innerHTML = "Total: " + totalPrice + ",-";
+            priceTotal.innerHTML = "Total: " + totalPrice.toFixed(2) + ",-";
             basketItem.appendChild(nameB);
             basketItem.appendChild(count);
             basketItem.appendChild(br);
             basketItem.appendChild(priceB);
             basketDiv.appendChild(basketItem)
+            basketDiv.appendChild(br2);
             idList.push(item.id);
-            document.getElementById("total-price").innerText= "Total: " + totalPrice + ",-";
+            document.getElementById("total-price").innerText= "Total: " + totalPrice.toFixed(2) + ",-";
             document.getElementById("payment").style.visibility = "visible";
 
 

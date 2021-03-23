@@ -3,9 +3,14 @@
 body{
     text-align: left;
 }
+a{
+    text-decoration: none;
+    color:black;
+}
 #basket-div{
     /*margin: auto;*/
-    display: inline-block;
+    /*display: inline-block;*/
+
 }
 #list-div h3{
     text-align: center;
@@ -24,7 +29,6 @@ body{
     padding-bottom: 24px;
 
 }
-
 
 #payment{
     visibility: hidden;
