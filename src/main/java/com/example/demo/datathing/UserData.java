@@ -1,11 +1,7 @@
 package com.example.demo.datathing;
 
-import com.example.demo.model.Activity;
-import com.example.demo.model.Reservation;
-import com.example.demo.model.User;
-import com.example.demo.repository.ActivityRepository;
-import com.example.demo.repository.ReservationRepository;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -27,6 +23,12 @@ public class UserData implements CommandLineRunner {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    InstructorRepository instructorRepository;
+
+    @Autowired
+    AssignmentRepository assignmentRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -120,22 +122,38 @@ public class UserData implements CommandLineRunner {
         reservationRepository.save(res4);
         reservationRepository.save(res5);
 
+        //----------Test data for instructors----------
 
-        /*
-        Date date = new Date(1616626800000l);
+        Instructor i1 = new Instructor("Gert");
+        Instructor i2 = new Instructor("Bob");
+        Instructor i3 = new Instructor("Ib");
+        Instructor i4 = new Instructor("Billy");
+        Instructor i5 = new Instructor("Margrethe");
+        Instructor i6 = new Instructor("Bøje");
 
-        Time time = new Time(43200000);
+        instructorRepository.save(i1);
+        instructorRepository.save(i2);
+        instructorRepository.save(i3);
+        instructorRepository.save(i4);
+        instructorRepository.save(i5);
+        instructorRepository.save(i6);
 
-        System.out.println(date);
-        System.out.println(time);
+        //----------Test data for assignments----------
 
-        String d = date.toString();
+        Assignment a1 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 03, 1));
+        Assignment a2 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 04, 2));
+        Assignment a3 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 03, 3));
+        Assignment a4 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 03, 4));
+        Assignment a5 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 03, 5));
+        Assignment a6 = new Assignment(instructorRepository.findById(1).get(), LocalDate.of(2021, 03, 6));
+        Assignment a7 = new Assignment(instructorRepository.findById(2).get(), LocalDate.of(2021, 03, 8));
 
-        String t = time.toString();
-
-        System.out.println(d + " " + t);
-        //date.
-
-         */
+        assignmentRepository.save(a1);
+        assignmentRepository.save(a2);
+        assignmentRepository.save(a3);
+        assignmentRepository.save(a4);
+        assignmentRepository.save(a5);
+        assignmentRepository.save(a6);
+        assignmentRepository.save(a7);
     }
 }
