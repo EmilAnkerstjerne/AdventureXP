@@ -30,6 +30,7 @@ public class WorkScheduleRestController {
         if (instructorRepository.findById(instructor.getId()).isEmpty()){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
+        assignmentRepository.deleteByInstructor(instructor);
         instructorRepository.delete(instructor);
         return new ResponseEntity(HttpStatus.OK);
     }

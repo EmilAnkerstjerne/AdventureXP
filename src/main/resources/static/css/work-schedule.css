@@ -28,6 +28,7 @@ body{    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     padding-right: 17px;
     box-sizing: content-box;
+    cursor: pointer;
 }
 .assignment{
     margin: 3px 5px 0px 5px;
@@ -36,12 +37,15 @@ body{    font-family: 'Poppins', sans-serif;
     padding-right: 5px;
     background-color: #fed767;
     border-radius: 3px;
+    position: relative;
+    cursor: pointer;
 }
 .date{
     position: absolute;
-    top: 4px;
+    top: 1px;
     right: 4px;
     font-size: 10px;
+    z-index: 1;
 }
 .title{
 
@@ -51,4 +55,26 @@ body{    font-family: 'Poppins', sans-serif;
 }
 .cal-search-inp{
     margin-left: 5%;
+}
+.ins{
+    background-color: #fed767;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 2px;
+    width: 200px;
+    font-size: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.ins-delete{
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    cursor: pointer;
+}
+.assignment-delete{
+    position: absolute;
+    right: 5px;
+    bottom: 1px;
+    cursor: pointer;
 }

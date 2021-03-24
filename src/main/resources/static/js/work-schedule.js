@@ -13,7 +13,7 @@ const nextBtn = document.querySelector(".nextBtn");
 const insAddInp = document.querySelector(".ins-add-inp");
 const insSearchBtn = document.querySelector(".ins-search-btn");
 const insBox = document.querySelector(".ins-box");
-const ins = () => document.querySelector(".ins");
+const ins = () => {return document.querySelectorAll(".ins")};
 
 //---------------------------------------------------------------------------------------------------------------------
 
@@ -24,7 +24,9 @@ const requestObjectGet = {
 }
 
 let assignment = {
-    id: 0
+    id: 0,
+    date: [2021, 1, 1],
+    instructor: null
 }
 
 let instructor = {
@@ -66,10 +68,17 @@ function loadInstructor(data){
     instructor.innerHTML = data.name;
     instructor.setAttribute("value", data.id);
 
+    let del = document.createElement("span");
+    del.className = "ins-delete";
+    del.innerHTML = "x";
+    del.setAttribute("value", data.id);
+    instructor.appendChild(del);
+
     insBox.appendChild(instructor);
 }
 
 function getInstructors(){
+    ins().forEach(i => i.remove());
     fetch(instructorGetUrl, requestObjectGet)
         .then(response => response.json())
         .then(data => data.forEach(dat => loadInstructor(dat)))
@@ -113,10 +122,18 @@ function loadAssignments(data){
     el.className = "assignment";
     el.innerHTML = data.instructor.name;
     el.setAttribute("value", data.id);
-    activeDays[data.date[2]].appendChild(el);
+
+    let del = document.createElement("span");
+    del.className = "assignment-delete";
+    del.innerText = "x";
+    el.appendChild(del);
+
+    activeDays[data.date[2] - 1].appendChild(el);
 }
 
 function getAssignments(){
+    assignments().forEach(a => a.remove());
+
     let url = assignmentGetUrl + period.innerHTML.trim().split("/")[1] + "/" + period.innerHTML.trim().split("/")[0];
     fetch(url, requestObjectGet)
         .then(response => response.json())
@@ -150,7 +167,7 @@ function clearSearch(){
 function calSearch(){
     const term = calSearchInp.value;
     assignments().forEach(a => {
-        if (a.innerHTML === term){
+        if (a.textContent.slice(0, -1) === term){
             a.hidden = false;
         } else {
             a.hidden = true;
@@ -169,8 +186,74 @@ function insAdd(){
     }
 }
 
-function elementPress(ev){
+let insTarget = "";
 
+function elementPress(ev){
+    let el = ev.target;
+    if (el.className === "cal-box") {
+        if (insTarget !== ""){
+            assignment.date = [Number(period.innerHTML.trim().split("/")[1]),
+                Number(el.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
+                Number(el.getElementsByTagName("span")[0].innerHTML.split("/")[0])
+            ];
+            instructor.name = insTarget.textContent.slice(0, -1);
+            instructor.id = Number(insTarget.getAttribute("value"));
+            assignment.instructor = instructor;
+            body1 = JSON.stringify(assignment);
+            requestOptionsPost.body = body1;
+            fetch(assignmentPostUrl, requestOptionsPost)
+                .then(response => response.status)
+                .then(getAssignments)
+        }
+    } else if (el.className === "assignment") {
+        let par = el.parentElement;
+        if (insTarget !== ""){
+            assignment.date = [Number(period.innerHTML.trim().split("/")[1]),
+                Number(par.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
+                Number(par.getElementsByTagName("span")[0].innerHTML.split("/")[0])
+            ];
+            instructor.name = insTarget.textContent.slice(0, -1);
+            instructor.id = Number(insTarget.getAttribute("value"));
+            assignment.instructor = instructor;
+            body1 = JSON.stringify(assignment);
+            requestOptionsPost.body = body1;
+            fetch(assignmentPostUrl, requestOptionsPost)
+                .then(response => response.status)
+                .then(getAssignments)
+        }
+    } else if (el.className === "ins") {
+        if (el === insTarget) {
+            ins().forEach(i => i.style.backgroundColor = "#fed767");
+            insTarget = "";
+        } else {
+            ins().forEach(i => i.style.backgroundColor = "#fed767");
+            el.style.backgroundColor = "#68b3ff";
+            insTarget = el;
+        }
+    } else if (el.className === "ins-delete") {
+        instructor.id = el.getAttribute("value");
+        instructor.name = el.parentElement.textContent.slice(0, -1);
+        body1 = JSON.stringify(instructor);
+        requestOptionsDelete.body = body1;
+        fetch(instructorDeleteUrl, requestOptionsDelete)
+            .then(response => response.status)
+            .then(status => {
+                getInstructors();
+                getAssignments();
+            })
+    } else if (el.className === "assignment-delete") {
+        assignment.id = el.parentElement.getAttribute("value");
+        assignment.date = [
+            Number(period.innerHTML.trim().split("/")[1]),
+            Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
+            Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[0])
+        ];
+        body1 = JSON.stringify(assignment);
+        requestOptionsDelete.body = body1;
+        fetch(assignmentDeleteUrl, requestOptionsDelete)
+            .then(response => response.status)
+            .then(getAssignments)
+    }
 }
 
 calSearchBtn.addEventListener("click", calSearch);
@@ -179,4 +262,4 @@ preBtn.addEventListener("click", previousMonth);
 nextBtn.addEventListener("click", nextMonth);
 insSearchBtn.addEventListener("click", insAdd);
 
-document.addEventListener("click", ev => elementPress());
+document.addEventListener('click', ev => elementPress(ev));
