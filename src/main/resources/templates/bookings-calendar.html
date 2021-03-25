@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Bookings Calendar</title>
     <link href="../static/css/bookingsCalendar.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div style="text-align: left;">
+    <div class="nav-buttons"><a th:href="@{/emenu}"><button>Menu</button></a></div>
+    <div class="nav-buttons"><button onclick="window.location.reload()">Reload</button></div>
+</div>
+<div class="top-div">
+    <h1 id="h1"></h1>
+    <div id="buttons-div1" class="nav-buttons"></div>
+    <div id="buttons-div2" class="nav-buttons"></div>
+</div>
 
-<h1 id="h1"></h1><div id="buttons-div"></div>
 
 <div id="calendar-div"></div>
 

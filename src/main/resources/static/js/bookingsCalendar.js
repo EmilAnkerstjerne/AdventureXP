@@ -62,7 +62,9 @@ let months =[
 ];
 
 let masterDiv = document.getElementById("calendar-div");
-let buttonDiv = document.getElementById("buttons-div");
+let buttonDiv1 = document.getElementById("buttons-div1");
+let buttonDiv2 = document.getElementById("buttons-div2");
+
 
 async function createHTMLMonth(month, year){
 
@@ -93,17 +95,20 @@ async function createHTMLMonth(month, year){
         let div = document.createElement("div");
         div.className = "daysDiv"
 
+        let captiondiv = document.createElement("div");
+        captiondiv.className = "caption-div";
 
+        let weekDaySpan = document.createElement("span");
+        weekDaySpan.innerHTML = weekday[day.getDay()] + ", ";
+        captiondiv.appendChild(weekDaySpan);
 
         let daySpan = document.createElement("span");
         daySpan.innerHTML = i + ". ";
-        div.appendChild(daySpan)
+        captiondiv.appendChild(daySpan)
 
-        let weekDaySpan = document.createElement("span");
-        weekDaySpan.innerHTML = weekday[day.getDay()];
-        div.appendChild(weekDaySpan);
+        div.appendChild(captiondiv);
 
-        div.appendChild(document.createElement("br"));
+        //div.appendChild(document.createElement("br"));
 
         for (let k = 0; k<addRes; k++) {
             let reservation = document.createElement("span");
@@ -144,7 +149,7 @@ async function createHTMLMonth(month, year){
         minusbutton.remove();
         createHTMLMonth(month-1, year);
     })
-    buttonDiv.appendChild(minusbutton);
-    buttonDiv.appendChild(plusbutton);
+    buttonDiv1.appendChild(minusbutton);
+    buttonDiv2.appendChild(plusbutton);
 
 }
