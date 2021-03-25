@@ -162,17 +162,20 @@ function nextMonth(){
 
 function clearSearch(){
     assignments().forEach(a => a.hidden = false);
+    calSearchInp.value = "";
 }
 
 function calSearch(){
     const term = calSearchInp.value;
-    assignments().forEach(a => {
-        if (a.textContent.slice(0, -1) === term){
-            a.hidden = false;
-        } else {
-            a.hidden = true;
-        }
-    });
+    if(term !== ""){
+        assignments().forEach(a => {
+            if (a.textContent.slice(0, -1) === term){
+                a.hidden = false;
+            } else {
+                a.hidden = true;
+            }
+        });
+    }
 }
 
 function insAdd(){

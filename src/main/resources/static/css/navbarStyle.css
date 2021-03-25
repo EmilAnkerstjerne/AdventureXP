@@ -1,0 +1,98 @@
+header{
+    height: 80px;
+    width: 100%;
+}
+
+.navbar{
+    display: inline-block;
+    background-color: #FED767;
+    position: absolute;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 90%;
+    border: 2px solid black;
+    border-left:none;
+    height: 40px;
+    overflow: hidden;
+
+
+
+}
+
+
+
+.navbar-link, .navbar-link-last{
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    margin:0;
+    line-height: 40px;
+    /*
+    border-right: 1px solid #e0c93d;
+    border-left: 1px solid #e0c93d;
+     */
+}
+.navbar-link-last{
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    float:right;
+}
+
+.navbar-link:hover, .navbar-link-last:hover{
+    cursor: pointer;
+    background-color: #efd792;
+}
+.logo2{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    float:left;
+    width:140px;
+    height: 88px;
+    background-color: #FED767;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 2px solid black;
+
+}
+
+#hidden-border-div{
+    float:left;
+    width:142px;
+    height: 40px;
+    position: absolute;
+    border-right: 2px solid #FED767;
+    overflow: visible;
+    margin-top:2px;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+}
+#logout-div, #login-div{
+    display: inline-block;
+}
+#login-div{
+    display: inline-block;
+}
+#logout-div{
+    display: none;
+}
+#my-bookings{
+    display: none;
+}
+
+.navbar-wrapper, .login-wrapper{
+    display: inline-block;
+}
+
+.navbar-wrapper{
+    float:left;
+}
+.login-wrapper{
+    float:right;
+    height: 40px;
+}

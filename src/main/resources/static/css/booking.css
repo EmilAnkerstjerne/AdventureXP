@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "navbarStyle.css";
 body{    font-family: 'Poppins', sans-serif;
 }
 .grid-container{
@@ -25,12 +26,12 @@ body{    font-family: 'Poppins', sans-serif;
 .reservation{
     position: absolute;
     background-color: #fd5069;
-    width: 100px;
-    margin: 10px;
+    width: 110px;
+    margin: 10px 5px;
     border-radius: 5px;
 }
 .test1{
-    top: 0px;
+    top: 0;
     height: 160px;
 }
 .test2{

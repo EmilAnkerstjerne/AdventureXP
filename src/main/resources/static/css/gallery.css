@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "navbarStyle.css";
+
 body{    font-family: 'Poppins', sans-serif;
+    background-color: #eee;
 }
 .grid-container{
     display: grid;
@@ -12,12 +15,18 @@ body{    font-family: 'Poppins', sans-serif;
 .grid-item{
     width: 300px;
     height: 500px;
-    border: solid #e2d4a1 1px;
-    padding: 0;
-    background-color: #ffe8a1;
+    border: solid 1px black;
+    background-color: #fcfcfc;
     border-radius: 30px;
     overflow: hidden;
+    padding: 10px;
+    text-align: center;
 }
+.text-wrapper{
+    width: 300px;
+    height: 400px;
+}
+
 .activity-name{
     margin-left: 5px;
 }
@@ -37,37 +46,35 @@ body{    font-family: 'Poppins', sans-serif;
 body{
     background-color: #fcfcfc;
 }
-.logo{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 15%;
-    alignment: center;
-}
+
 .banner{
     width: 100%;
     background-color: #FED767;
     margin: 0;
 }
 .bookingBtn{
-    margin-top: auto;
-    margin-bottom: 5px;
     background-color: #FED767;
     color: black;
     text-decoration: none;
     padding: 5px 13px 5px 13px;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 20px;
-    display: inline-block;
+    display: block;
     text-align: center;
     border: solid #1a1a1a 2px;
-    margin-left: 5px;
+    width: 240px;
+    margin: 20px auto auto auto;
+
 }
-header{
+
+.bookingBtn:hover{
+    background-color: #ffd457;
+    cursor: default;
+}
+.bookingBtn:active{
     background-color: #FED767;
-    width: 100%;
 }
+
 .activity-img{
     width: 100%;
-
 }

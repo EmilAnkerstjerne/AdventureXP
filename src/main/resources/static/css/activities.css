@@ -1,8 +1,27 @@
+@import "storeItemManageStyle.css";
+
+body{
+
+}
+input, textarea{
+    font-family: inherit;
+}
+
+
 .activity-div{
     border: 1px solid black;
     width: 50%;
     display: inline-block;
     border-radius: 25px;
     padding: 20px;
-    margin: 2px;
+    margin: 5px;
+}
+
+.header-div{
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.header-div h1 {
+    margin-bottom: 5px;
 }

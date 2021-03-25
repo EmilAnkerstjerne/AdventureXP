@@ -18,9 +18,17 @@
     <span> | </span><a href="/store/manage">Manage Store</a>
     <span> | </span><a href="/logout">Logout</a>
     <span> | </span><a href="/login">Login</a>
-    <img src="../static/images/logo.png" class="logo" alt="AdventureXP logo">
+    <div>
+        <img src="../static/images/logo.png" class="logo2" alt="AdventureXP logo">
+        <div class="navbar">
+            <a ><div class="navbar-link">Home</div></a>
+            <a th:href="@{/activities/gallery}"><div class="navbar-link">Activities</div></a>
+            <a ><div class="navbar-link">Home</div></a>
+            <a ><div class="navbar-link">Home</div></a>
+            <a th:href="@{/registration/register}"><div class="navbar-link-last">Register</div></a>
+        </div>
+    </div>
 </header>
-<button id="backBtn">The Way Back Button</button>
 
 <div class="form">
     <h1>The Amazing Adventure Alley Registration</h1><br>
