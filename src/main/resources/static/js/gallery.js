@@ -66,7 +66,7 @@ function loadActivities(){
     fetch(url, requestObject)
         .then(response => response.json())
         .then(data => gotActivityData(data))
-        .catch((error) => console.log("Ups"));
+        .catch((error) => console.log("Ups" + error));
 }
 
 loadActivities();
@@ -83,6 +83,14 @@ function book(ev){
 }
 
 document.addEventListener("click", ev => book(ev));
+
+
+
+
+
+
+
+
 
 
 
