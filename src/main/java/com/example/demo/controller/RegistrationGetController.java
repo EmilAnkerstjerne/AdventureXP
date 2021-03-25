@@ -10,9 +10,4 @@ public class RegistrationGetController {
     public String registrationPage(){
         return "registration";
     }
-
-    @GetMapping("/registration/registration_style.css")
-    public String regStylesheet(){
-        return "../static/registration_style";
-    }
 }
