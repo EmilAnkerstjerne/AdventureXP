@@ -4,8 +4,8 @@ import com.example.demo.model.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
@@ -21,4 +21,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
     @Query("SELECT r FROM Reservation r WHERE YEAR(r.date) = ?1 AND MONTH(r.date) = ?2 AND r.activity.id = ?3")
     List<Reservation> getReservationByActivityIdAndMonthYear(int year, int month, int activityId);
+
+    @Transactional
+    void deleteAllByActivity_Id(int activityId);
 }
