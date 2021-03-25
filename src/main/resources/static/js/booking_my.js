@@ -59,7 +59,7 @@ function resClick(ev){
         deleteBtn.disabled = false;
 
         resItems().forEach(item => item.style.backgroundColor = "#fed767");
-        el.style.backgroundColor = "#92e3ff";
+        el.style.backgroundColor = "#0493e666";
 
         resId.value = el.getElementsByTagName('input')[0].value;
         resTitle.value = el.getElementsByTagName('h2')[0].innerHTML;

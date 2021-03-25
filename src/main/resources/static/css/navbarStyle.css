@@ -28,6 +28,7 @@ header{
     text-align: center;
     margin:0;
     line-height: 40px;
+    font-weight: bold;
     /*
     border-right: 1px solid #e0c93d;
     border-left: 1px solid #e0c93d;
@@ -41,7 +42,8 @@ header{
 
 .navbar-link:hover, .navbar-link-last:hover{
     cursor: pointer;
-    background-color: #efd792;
+    background-color: #ffd55c;
+    text-shadow: 1px 1px #f2ca55;
 }
 .logo2{
     display: inline-block;

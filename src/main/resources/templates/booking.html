@@ -11,21 +11,25 @@
         <img src="../static/images/logo.png" class="logo2" alt="AdventureXP logo">
         <div id="hidden-border-div"></div>
         <div class="navbar">
-            <a th:href="@{/activities/gallery}"><div class="navbar-link">Home</div></a>
-            <a th:href="@{/activities/gallery}"><div class="navbar-link">Activities</div></a>
-            <a ><div class="navbar-link">3</div></a>
-
-            <a th:href="@{/registration/register}"><div class="navbar-link-last">Register</div></a>
-            <a th:href="@{/login}"><div class="navbar-link" id="login-div">Login</div></a>
-            <a th:href="@{/logout}"><div class="navbar-link" id="logout-div">Logout</div></a>
-
+            <div class="navbar-wrapper">
+                <a th:href="@{/activities/gallery}"><div class="navbar-link">Home</div></a>
+                <a th:href="@{/bookings}"><div class="navbar-link" id="my-bookings">My bookings</div></a>
+                <a ><div class="navbar-link">3</div></a>
+            </div>
+            <div class="login-wrapper">
+                <a th:href="@{/registration/register}"><div class="navbar-link-last">Register</div></a>
+                <a th:href="@{/login}"><div class="navbar-link" id="login-div">Login</div></a>
+                <a th:href="@{/logout}"><div class="navbar-link" id="logout-div">Logout</div></a>
+            </div>
         </div>
     </div>
 </header>
-<div>
-    <h1>Booking overview: <span class="act-title"><!--Gocart --></span></h1>
-    <p class="info-small">Minimum Duration: <span class="minDur"><!--60 --></span> hour(s)</p>
-    <p class="info-small">Maximum Participants: <span class="maxPar"><!--10 --></span> alien(s)</p>
+<div style="text-align: center;">
+    <div style="margin-bottom: 15px;">
+        <h1>Booking overview: <span class="act-title"><!--Gocart --></span></h1>
+        <p class="info-small">Minimum Duration: <span class="minDur"><!--60 --></span> hour(s)</p>
+        <p class="info-small">Maximum Participants: <span class="maxPar"><!--10 --></span> alien(s)</p>
+    </div>
     <div class="grid-container">
         <div></div>
         <div class="info">

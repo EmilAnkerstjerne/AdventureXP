@@ -1,26 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "navbarStyle.css";
 body{    font-family: 'Poppins', sans-serif;
 }
 .res-box{
     background-color: #fed767;
-    border-radius: 5px;
+    border-radius: 10px;
+    border:1px solid black;
     padding: 3px;
 
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
+
 }
 .res-box:hover{
     cursor: pointer;
 }
 .grid-container{
     display: grid;
-    margin-left: 5%;
-    margin-right: 5%;
-    grid-template-columns: 60% 30%;
-    column-gap: 10px;
+    grid-template-columns: 800px 330px;
+    column-gap: 20px;
     row-gap: 0;
+    width: 1141px;
+    margin:auto;
 }
 .grid-item{
 
@@ -45,16 +48,21 @@ body{    font-family: 'Poppins', sans-serif;
     color: black;
 }
 .form{
-    border: solid 5px;
-    padding: 10px;
+    border: 2px solid #00000040;
+    border-radius: 10px;
+    padding: 20px;
     height: 400px;
     width: 300px;
+    text-align: center;
 }
 .res-con{
     background-color: #f1f1f1;
     padding-top: 20px;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 .warn{
     color: red;
+}
+button, input, select{
+    font-family: inherit;
 }
