@@ -71,10 +71,12 @@ function createHTML(activity){
     name.innerHTML = activity.name;
     let nameInp = document.createElement("input");
     nameInp.style.display = "none";
+    nameInp.style.textAlign = "center";
+    nameInp.style.margin = "auto";
     nameInp.value = name.innerHTML;
     div.appendChild(name);
     div.appendChild(nameInp);
-    div.appendChild(document.createElement("br"));
+    //div.appendChild(document.createElement("br"));
 
     let span1 = document.createElement("span");
     span1.innerHTML = "Maks ";
@@ -136,7 +138,7 @@ function createHTML(activity){
         fetch(postUrl, postRequest).then(response => console.log(response));
 
         name.innerHTML = nameInp.value;
-        name.style.display = "inline-block";
+        name.style.display = "";
         nameInp.style.display = "none";
 
         maksPers.innerHTML = maksPersInp.value;
@@ -167,7 +169,7 @@ function createHTML(activity){
     editButton.value = activity.id;
     editButton.onclick = function(){
         name.style.display = "none";
-        nameInp.style.display = "inline-block";
+        nameInp.style.display = "block";
 
         maksPers.style.display = "none";
         maksPersInp.style.display = "inline-block";

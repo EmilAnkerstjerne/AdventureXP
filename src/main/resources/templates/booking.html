@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Booking</title>
@@ -7,22 +7,29 @@
 </head>
 <body>
 <header>
-    <a href="/activities/gallery">Gallery  </a>
-    <span> | </span><a href="/bookings">My Bookings</a>
-    <span> | </span><a href="/booking">Booking</a>
-    <span> | </span><a href="/work-schedule">Work Schedule</a>
-    <span> | </span><a href="/registration/register">Register</a>
-    <span> | </span><a href="/activities">Activities</a>
-    <span> | </span><a href="/activities/create">Create Activity</a>
-    <span> | </span><a href="/store">Store</a>
-    <span> | </span><a href="/store/manage">Manage Store</a>
-    <span> | </span><a href="/logout">Logout</a>
-    <span> | </span><a href="/login">Login</a>
+    <div>
+        <img src="../static/images/logo.png" class="logo2" alt="AdventureXP logo">
+        <div id="hidden-border-div"></div>
+        <div class="navbar">
+            <div class="navbar-wrapper">
+                <a th:href="@{/activities/gallery}"><div class="navbar-link">Home</div></a>
+                <a th:href="@{/bookings}"><div class="navbar-link" id="my-bookings">My bookings</div></a>
+                <a ><div class="navbar-link">3</div></a>
+            </div>
+            <div class="login-wrapper">
+                <a th:href="@{/registration/register}"><div class="navbar-link-last">Register</div></a>
+                <a th:href="@{/login}"><div class="navbar-link" id="login-div">Login</div></a>
+                <a th:href="@{/logout}"><div class="navbar-link" id="logout-div">Logout</div></a>
+            </div>
+        </div>
+    </div>
 </header>
-<div>
-    <h1>Booking overview: <span class="act-title"><!--Gocart --></span></h1>
-    <p class="info-small">Minimum Duration: <span class="minDur"><!--60 --></span> hour(s)</p>
-    <p class="info-small">Maximum Participants: <span class="maxPar"><!--10 --></span> alien(s)</p>
+<div style="text-align: center;">
+    <div style="margin-bottom: 15px;">
+        <h1>Booking overview: <span class="act-title"><!--Gocart --></span></h1>
+        <p class="info-small">Minimum Duration: <span class="minDur"><!--60 --></span> hour(s)</p>
+        <p class="info-small">Maximum Participants: <span class="maxPar"><!--10 --></span> alien(s)</p>
+    </div>
     <div class="grid-container">
         <div></div>
         <div class="info">
@@ -55,7 +62,7 @@
         </div>
         <div></div>
         <div style="position: relative">
-            <span style="position: relative; top: 0px">-08:00-</span>
+            <span style="position: relative; top: 0">-08:00-</span>
             <span style="position: relative; top: 58px">-10:00-</span>
             <span style="position: relative; top: 116px">-12:00-</span>
             <span style="position: relative; top: 174px">-14:00-</span>
@@ -217,6 +224,7 @@
 <div>
 
     <script src="../static/js/booking.js" type="text/javascript"></script>
+    <script src="../static/js/navbar.js" type="text/javascript"></script>
 </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "storeItemManageStyle.css";
 body{    font-family: 'Poppins', sans-serif;
 }
 .divide{
@@ -28,17 +29,18 @@ body{    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     padding-right: 17px;
     box-sizing: content-box;
-    cursor: pointer;
+    cursor: default;
+    padding-top:20px;
 }
 .assignment{
-    margin: 3px 5px 0px 5px;
+    margin: 3px 5px 0 5px;
     width: 100px;
     padding-left: 5px;
     padding-right: 5px;
     background-color: #fed767;
     border-radius: 3px;
     position: relative;
-    cursor: pointer;
+    cursor: default;
 }
 .date{
     position: absolute;
@@ -64,12 +66,15 @@ body{    font-family: 'Poppins', sans-serif;
     width: 200px;
     font-size: 20px;
     position: relative;
-    cursor: pointer;
+    cursor: default;
+    text-align: center;
+    margin:10px auto;
+
 }
 .ins-delete{
     position: absolute;
     right: 5px;
-    top: 0px;
+    top: 0;
     cursor: pointer;
 }
 .assignment-delete{

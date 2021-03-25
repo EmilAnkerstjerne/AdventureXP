@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create Activity</title>
+    <link href="../static/css/activities.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+<div style="text-align: left">
+    <div class="nav-buttons"><a th:href="@{/emenu}"><button>Menu</button></a></div>
+    <div class="nav-buttons"><button onclick="window.location.reload()">Reload</button></div>
+    <div class="nav-buttons"><a th:href="@{/activities}"><button>Activities</button></a></div>
+</div>
+
 <h1>Create activity</h1>
 
 <span>Name:</span>
@@ -22,6 +30,7 @@
 <span>Description:</span>
 <br>
 <textarea id="description"></textarea>
+<br>
 
 <button type="button" onclick="save()">Save</button>
 

@@ -1,7 +1,5 @@
 let billy = "Billy";
 
-const backBtn = document.getElementById("backBtn");
-
 const nameInp = document.getElementById("nameInp");
 const emailInp = document.getElementById("emailInp");
 const passwordInp = document.getElementById("passwordInp");
@@ -48,16 +46,14 @@ function wait (ms){
 
 function regSuccess (){
     document.body.innerHTML += "<h2>Registration successful, redirecting to login page.</h2>"
-    wait(4000).then( () => {
-        window.location.href = "/user";
+    wait(2000).then( () => {
+        window.location.href = "/login";
         });
 }
 
 function addUser(){
     body1 = JSON.stringify(user);
     requestOptions.body = body1;
-
-    console.log(user);
 
     fetch(url, requestOptions)
         .then(response => {
@@ -105,5 +101,4 @@ function checkUser(){
     }
 }
 
-backBtn.addEventListener("click", () => window.location.href = '/')
 regBtn.addEventListener("click", checkUser)

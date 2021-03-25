@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Activity;
 import com.example.demo.repository.ActivityRepository;
+import com.example.demo.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -15,10 +15,13 @@ public class ActivityRestController {
     @Autowired
     ActivityRepository activityRepository;
 
+    @Autowired
+    ReservationRepository reservationRepository;
 
     @ResponseStatus(code= HttpStatus.NO_CONTENT)
     @DeleteMapping("/activities/deleteActivity/{id}")
     public RedirectView deleteActivity(@PathVariable int id){
+        reservationRepository.deleteAllByActivity_Id(id);
         activityRepository.delete(activityRepository.getOne(id));
         return new RedirectView("/activities");
     }
