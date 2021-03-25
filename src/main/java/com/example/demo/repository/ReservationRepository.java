@@ -19,6 +19,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     @Query("SELECT r FROM Reservation r WHERE r.activity.id = ?1 AND r.date = ?2")
     List<Reservation> getActivityReservationsForDay(int activityId, LocalDate date);
 
-    @Query("SELECT r FROM Reservation r WHERE YEAR(r.date) = ?1 AND MONTH(r.date) = ?2 AND r.activity.id = ?3")
-    List<Reservation> getReservationByActivityIdAndMonthYear(int year, int month, int activityId);
+    @Query("SELECT r FROM Reservation r WHERE YEAR(r.date) = ?1 AND MONTH(r.date) = ?2")
+    List<Reservation> getReservationByActivityIdAndMonthYear(int year, int month);
 }

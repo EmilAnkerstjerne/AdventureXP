@@ -1,0 +1,9 @@
+
+
+.daysDiv {
+    border: 1px solid black;
+    width: 20%;
+    height: 100px;
+    float: left;
+    margin: 2px;
+}

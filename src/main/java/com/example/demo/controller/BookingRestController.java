@@ -84,8 +84,13 @@ public class BookingRestController {
         return reservationRepository.getActivityReservationsForDay(activityId, newDate);
     }
 
-    @GetMapping("/test69/{year}/{month}/{id}")
-    public List<Reservation> test(@PathVariable int year, @PathVariable int month, @PathVariable int id){
-        return reservationRepository.getReservationByActivityIdAndMonthYear(year, month, id);
+    @GetMapping("/reservations/{year}/{month}")
+    public List<Reservation> test(@PathVariable int year, @PathVariable int month){
+        return reservationRepository.getReservationByActivityIdAndMonthYear(year, month);
+    }
+
+    @GetMapping("/reservations/all")
+    public List<Reservation> getAllReservations(){
+        return reservationRepository.findAll();
     }
 }

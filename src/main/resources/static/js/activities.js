@@ -208,11 +208,6 @@ function loadedActivities(data){
 }
 
 
-
-function insertActivities(activity){
-
-}
-
 function reloadPage(){
     location.reload();
 }
