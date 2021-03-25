@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/work-schedule", "/work-schedule/*").hasRole("ADMIN")
+                .antMatchers("/work-schedule", "/work-schedule/*",
+                        "/activities/deleteActivity/*", "/activities/create/save", "/activities", "/activities/create").hasRole("ADMIN")
                 .antMatchers("/store", "/store/*", "/emenu", "/booking/*", "/booking", "/bookings").hasAnyRole("ADMIN", "USER")
                 .antMatchers( "/registration/*", "/public/*").permitAll()
                 .and().formLogin();
