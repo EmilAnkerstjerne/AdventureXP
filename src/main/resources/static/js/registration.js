@@ -47,7 +47,7 @@ function wait (ms){
 function regSuccess (){
     document.body.innerHTML += "<h2>Registration successful, redirecting to login page.</h2>"
     wait(4000).then( () => {
-        window.location.href = "/user";
+        window.location.href = "/";
         });
 }
 
