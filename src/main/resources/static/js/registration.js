@@ -1,7 +1,5 @@
 let billy = "Billy";
 
-const backBtn = document.getElementById("backBtn");
-
 const nameInp = document.getElementById("nameInp");
 const emailInp = document.getElementById("emailInp");
 const passwordInp = document.getElementById("passwordInp");
@@ -105,5 +103,4 @@ function checkUser(){
     }
 }
 
-backBtn.addEventListener("click", () => window.location.href = '/')
 regBtn.addEventListener("click", checkUser)
