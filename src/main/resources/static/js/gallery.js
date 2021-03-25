@@ -11,7 +11,6 @@ const requestObject = {
 const url = "/activities/all";
 
 function makeGridItem(activity){
-    console.log(activity);
     const gridItem = document.createElement("div");
     gridItem.className = "grid-item";
 
@@ -60,7 +59,6 @@ function makeGridItem(activity){
 }
 
 function gotActivityData(data){
-    console.log(data);
     data.forEach(activity => makeGridItem(activity));
 }
 

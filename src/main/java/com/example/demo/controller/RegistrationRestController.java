@@ -25,7 +25,6 @@ public class RegistrationRestController {
     @PostMapping(value = "/registration/form", consumes = "application/json")
     public ResponseEntity<User> registrationForm(@RequestBody User user){
         User newUser = registrationService.registerNewUser(user);
-        System.out.println(user);
         if (newUser == null){
             return new ResponseEntity<>(user, HttpStatus.BAD_REQUEST);
         }else {
