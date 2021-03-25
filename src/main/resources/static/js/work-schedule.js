@@ -188,10 +188,61 @@ function insAdd(){
 
 let insTarget = "";
 
-function elementPress(ev){
-    let el = ev.target;
-    if (el.className === "cal-box") {
-        if (insTarget !== ""){
+function insSelect(el){
+    assignments().forEach(a => a.style.cursor = "default");
+    calBoxes.forEach(b => b.style.cursor = "default");
+    if (el === insTarget) {
+        ins().forEach(i => i.style.backgroundColor = "#fed767");
+        insTarget = "";
+    } else {
+        ins().forEach(i => i.style.backgroundColor = "#fed767");
+        el.style.backgroundColor = "#68b3ff";
+        insTarget = el;
+
+        assignments().forEach(a => a.style.cursor = "pointer");
+        calBoxes.forEach(b => b.style.cursor = "pointer");
+    }
+}
+
+function insDelete(el){
+    instructor.id = el.getAttribute("value");
+    instructor.name = el.parentElement.textContent.slice(0, -1);
+    body1 = JSON.stringify(instructor);
+    requestOptionsDelete.body = body1;
+    fetch(instructorDeleteUrl, requestOptionsDelete)
+        .then(response => response.status)
+        .then(status => {
+            getInstructors();
+            getAssignments();
+        })
+}
+
+function assignmentDelete(el){
+    assignment.id = el.parentElement.getAttribute("value");
+    assignment.date = [
+        Number(period.innerHTML.trim().split("/")[1]),
+        Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
+        Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[0])
+    ];
+    body1 = JSON.stringify(assignment);
+    requestOptionsDelete.body = body1;
+    fetch(assignmentDeleteUrl, requestOptionsDelete)
+        .then(response => response.status)
+        .then(getAssignments)
+}
+
+function assignmentSet(el){
+    if (insTarget !== ""){
+        let check = true;
+        let assigns = [].slice.call(el.getElementsByTagName("p"));
+
+        assigns.forEach(a => {
+            if (a.textContent.slice(0,-1) === insTarget.textContent.slice(0, -1)){
+                check = false;
+            }
+        })
+
+        if (check){
             assignment.date = [Number(period.innerHTML.trim().split("/")[1]),
                 Number(el.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
                 Number(el.getElementsByTagName("span")[0].innerHTML.split("/")[0])
@@ -205,54 +256,27 @@ function elementPress(ev){
                 .then(response => response.status)
                 .then(getAssignments)
         }
-    } else if (el.className === "assignment") {
+    }
+}
+
+function elementPress(ev){
+    let el = ev.target;
+
+    if (el.className === "cal-box") {
+        assignmentSet(el);
+    }
+    else if (el.className === "assignment") {
         let par = el.parentElement;
-        if (insTarget !== ""){
-            assignment.date = [Number(period.innerHTML.trim().split("/")[1]),
-                Number(par.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
-                Number(par.getElementsByTagName("span")[0].innerHTML.split("/")[0])
-            ];
-            instructor.name = insTarget.textContent.slice(0, -1);
-            instructor.id = Number(insTarget.getAttribute("value"));
-            assignment.instructor = instructor;
-            body1 = JSON.stringify(assignment);
-            requestOptionsPost.body = body1;
-            fetch(assignmentPostUrl, requestOptionsPost)
-                .then(response => response.status)
-                .then(getAssignments)
-        }
-    } else if (el.className === "ins") {
-        if (el === insTarget) {
-            ins().forEach(i => i.style.backgroundColor = "#fed767");
-            insTarget = "";
-        } else {
-            ins().forEach(i => i.style.backgroundColor = "#fed767");
-            el.style.backgroundColor = "#68b3ff";
-            insTarget = el;
-        }
-    } else if (el.className === "ins-delete") {
-        instructor.id = el.getAttribute("value");
-        instructor.name = el.parentElement.textContent.slice(0, -1);
-        body1 = JSON.stringify(instructor);
-        requestOptionsDelete.body = body1;
-        fetch(instructorDeleteUrl, requestOptionsDelete)
-            .then(response => response.status)
-            .then(status => {
-                getInstructors();
-                getAssignments();
-            })
-    } else if (el.className === "assignment-delete") {
-        assignment.id = el.parentElement.getAttribute("value");
-        assignment.date = [
-            Number(period.innerHTML.trim().split("/")[1]),
-            Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[1]),
-            Number(el.parentElement.parentElement.getElementsByTagName("span")[0].innerHTML.split("/")[0])
-        ];
-        body1 = JSON.stringify(assignment);
-        requestOptionsDelete.body = body1;
-        fetch(assignmentDeleteUrl, requestOptionsDelete)
-            .then(response => response.status)
-            .then(getAssignments)
+        assignmentSet(par);
+    }
+    else if (el.className === "ins") {
+        insSelect(el);
+    }
+    else if (el.className === "ins-delete") {
+        insDelete(el);
+    }
+    else if (el.className === "assignment-delete") {
+        assignmentDelete(el);
     }
 }
 
