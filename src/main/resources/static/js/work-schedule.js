@@ -60,9 +60,12 @@ const assignmentGetUrl = "/work-schedule/assignments/"; // "/work-schedule/assig
 const assignmentPostUrl = "/work-schedule/new-assignment";
 const assignmentDeleteUrl = "/work-schedule/delete-assignment";
 
+let insTarget = "";
 //---------------------------------------------------------------------------------------------------------------------
 
 function loadInstructor(data){
+    insTarget = "";
+
     const instructor = document.createElement("p");
     instructor.className = "ins";
     instructor.innerHTML = data.name;
@@ -180,6 +183,7 @@ function calSearch(){
 
 function insAdd(){
     if (insAddInp.value !== null){
+        instructor.id = 0;
         instructor.name = insAddInp.value;
         body1 = JSON.stringify(instructor);
         requestOptionsPost.body = body1;
@@ -188,8 +192,6 @@ function insAdd(){
             .then(data => loadInstructor(data))
     }
 }
-
-let insTarget = "";
 
 function insSelect(el){
     assignments().forEach(a => a.style.cursor = "default");
